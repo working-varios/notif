@@ -1,10 +1,11 @@
 package com.ito.notifico.lineanegocio.dto;
 
-import lombok.Builder;
-
-import javax.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import java.util.Date;
 
+@Getter
+@Setter
 public class GrupoDto {
     private int id;
 

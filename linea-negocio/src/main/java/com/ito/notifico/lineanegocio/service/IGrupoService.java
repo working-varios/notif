@@ -1,23 +1,22 @@
 package com.ito.notifico.lineanegocio.service;
-
-import com.ito.notifico.lineanegocio.dto.GrupoDto;
 import com.ito.notifico.lineanegocio.exception.ResourceNotFoundException;
+import com.ito.notifico.lineanegocio.model.GrupoEntity;
 import com.ito.notifico.lineanegocio.shared.ResultSearchData;
 
 public interface IGrupoService {
-    public GrupoDto findByUsername(String username);
+    public GrupoEntity findByName(String username) throws ResourceNotFoundException;
 
-    GrupoDto create(GrupoDto GrupoDto);
+    GrupoEntity create(GrupoEntity GrupoEntity);
 
-    void delete(GrupoDto GrupoDto) throws ResourceNotFoundException;
+    void delete(GrupoEntity GrupoEntity) throws ResourceNotFoundException;
 
     void deleteById(int id) throws ResourceNotFoundException;
 
-    Iterable<GrupoDto> findAll();
+    Iterable<GrupoEntity> findAll();
 
-    GrupoDto findById(int id) throws ResourceNotFoundException;
+    GrupoEntity findById(int id) throws ResourceNotFoundException;
 
-    GrupoDto update(GrupoDto GrupoDto) throws ResourceNotFoundException;
+    GrupoEntity update(GrupoEntity GrupoEntity) throws ResourceNotFoundException;
 
-    ResultSearchData<GrupoDto> findAllSearch(int page, int size);
+    ResultSearchData<GrupoEntity> findAllSearch(int page, int size);
 }

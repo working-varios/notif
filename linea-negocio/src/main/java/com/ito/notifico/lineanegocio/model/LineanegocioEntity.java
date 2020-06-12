@@ -1,42 +1,42 @@
 package com.ito.notifico.lineanegocio.model;
 
-import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ResultCheckStyle;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
-import lombok.Builder;
+
+import javax.persistence.*;
+import java.math.BigInteger;
+import java.util.Date;
 
 @Getter
 @Setter
-@Entity
-@Table(name = "grupo")
-@SQLDelete(sql = "UPDATE grupo SET eliminado = SYSDATE WHERE id = ?", check = ResultCheckStyle.COUNT)
+@Table(name = "lineanegocio")
+@SQLDelete(sql = "UPDATE lineanegocio SET eliminado = SYSDATE WHERE id = ?", check = ResultCheckStyle.COUNT)
 @Where(clause = "eliminado is  null")
-public class GrupoEntity {
+public class LineanegocioEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "id")
     private int id;
 
-    @Column(columnDefinition = "VARCHAR(2)")
-    private String sigla;
-
-    @Column(columnDefinition = "VARCHAR(20)")
+    @Column(columnDefinition = "VARCHAR(10)")
     private String codigo;
 
-    @Column(columnDefinition = "VARCHAR(120)")
+    @Column(columnDefinition = "VARCHAR(30)")
     private String nombre;
+
+    @Column(columnDefinition = "VARCHAR(500)")
+    private String descripcion;
+
+//    @Column(columnDefinition = "bigint")
+//    private BigInteger montoinicial;
+//
+//    @Column(columnDefinition = "bigint")
+//    private BigInteger montofinal;
 
     /** The activo. */
     @Column(name = "activo", columnDefinition = "BOOLEAN NOT NULL DEFAULT TRUE")

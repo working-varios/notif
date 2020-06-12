@@ -1,0 +1,2 @@
+--INSERT INTO GRUPO (id,codigo, nombre, activo,eliminado) values (1,'100XX','GRUPO 1XX', true, null);
+--esINSERT INTO grupo (sigla, codigo, nombre, activo,eliminado) values ('C','10','Material Vivo Vegetal y Animal, Accesorios y Suministros', true, null);
