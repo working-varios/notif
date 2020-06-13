@@ -1,10 +1,11 @@
 package com.ito.notifico.lineanegocio.service;
+
 import com.ito.notifico.lineanegocio.exception.ResourceNotFoundException;
 import com.ito.notifico.lineanegocio.model.GrupoEntity;
 import com.ito.notifico.lineanegocio.shared.ResultSearchData;
 
 public interface IGrupoService {
-    public GrupoEntity findByName(String username) throws ResourceNotFoundException;
+    GrupoEntity findByName(String username) throws ResourceNotFoundException;
 
     GrupoEntity create(GrupoEntity GrupoEntity);
 

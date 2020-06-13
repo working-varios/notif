@@ -1,5 +1,4 @@
 package com.ito.notifico.lineanegocio.controller;
-import com.ito.notifico.lineanegocio.dto.GrupoDto;
 import com.ito.notifico.lineanegocio.exception.ResourceNotFoundException;
 import com.ito.notifico.lineanegocio.model.GrupoEntity;
 import com.ito.notifico.lineanegocio.service.IGrupoService;
@@ -10,8 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 @RequestMapping({ "/grupo-api" })

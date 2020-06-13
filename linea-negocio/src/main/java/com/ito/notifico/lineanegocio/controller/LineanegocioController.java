@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping({ "/lineanegocio-api" })
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins= {"*"})
 public class LineanegocioController {
 
     @Autowired

@@ -16,6 +16,7 @@ import java.util.List;
 
 @Service
 public class LineanegocioServiceImpl extends BaseService<LineanegocioEntity> implements ILineanegocioService {
+
 @Autowired
 private LineanegocioRepository repository;
 
