@@ -56,10 +56,10 @@ public class LineanegocioController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<ResultSearchData<LineanegocioEntity>> search(@RequestParam(name = "pageIndex", defaultValue = "0") int pageIndex,
-                                                            @RequestParam(name = "pageSize", defaultValue = "10") int pageSize) {
+    public ResponseEntity<ResultSearchData<LineanegocioEntity>> search(@RequestParam(name = "page", defaultValue = "0") int page,
+                                                            @RequestParam(name = "size", defaultValue = "10") int size) {
         //PageRequest pageRequest = PageRequest.of(page, size);
-        ResultSearchData<LineanegocioEntity> datos = service.findAllSearch(pageIndex, pageSize);
+        ResultSearchData<LineanegocioEntity> datos = service.findAllSearch(page, size);
         return new ResponseEntity<ResultSearchData<LineanegocioEntity>>(datos, new HttpHeaders(), HttpStatus.OK);
 
     }
