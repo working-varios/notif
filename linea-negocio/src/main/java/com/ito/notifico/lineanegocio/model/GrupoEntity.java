@@ -32,10 +32,10 @@ public class GrupoEntity {
     @Column(columnDefinition = "VARCHAR(2)")
     private String sigla;
 
-    @Column(columnDefinition = "VARCHAR(20)")
+    @Column(columnDefinition = "VARCHAR(20) NOT NULL")
     private String codigo;
 
-    @Column(columnDefinition = "VARCHAR(120)")
+    @Column(columnDefinition = "VARCHAR(120) NOT NULL")
     private String nombre;
 
     /** The activo. */

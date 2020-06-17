@@ -20,4 +20,5 @@ public interface ILineanegocioService {
     LineanegocioEntity update(LineanegocioEntity LineanegocioEntity) throws ResourceNotFoundException;
 
     ResultSearchData<LineanegocioEntity> findAllSearch(int page, int size, String orderBy, String sort);
+    ResultSearchData<LineanegocioEntity> findAllSearch(int page, int size, String orderBy, String sort, int usuarioId);
 }

@@ -22,7 +22,7 @@ import lombok.Builder;
 @Setter
 @Entity
 @Table(name = "lineanegocio")
-@SQLDelete(sql = "UPDATE lineanegocio SET eliminado = SYSDATE WHERE id = ?", check = ResultCheckStyle.COUNT)
+@SQLDelete(sql = "UPDATE lineanegocio SET eliminado = current_date WHERE id = ?", check = ResultCheckStyle.COUNT)
 @Where(clause = "eliminado is  null")
 public class LineanegocioEntity {
 
@@ -34,7 +34,10 @@ public class LineanegocioEntity {
     @Column(columnDefinition = "VARCHAR(12) NULL")
     private String codigo;
 
-    @Column(columnDefinition = "VARCHAR(30) NOT NULL")
+    @Column(name = "usuarioid")
+    private int usuarioid;
+
+    @Column(columnDefinition = "VARCHAR(200) NOT NULL")
     private String nombre;
 
     @Column(columnDefinition = "VARCHAR(500) NOT NULL")

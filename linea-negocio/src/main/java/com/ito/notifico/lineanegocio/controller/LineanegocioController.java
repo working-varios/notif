@@ -10,8 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Controller
 @RequestMapping({ "/lineanegocio-api" })
 @CrossOrigin(origins= {"*"})
@@ -20,14 +18,12 @@ public class LineanegocioController {
     @Autowired
     private ILineanegocioService service;
 
-    @GetMapping(value = "/health")
-    public ResponseEntity<String> health() {
-        return new ResponseEntity<>("OK", HttpStatus.OK);
-    }
-
     @PostMapping("/create")
-    public ResponseEntity<LineanegocioEntity> create(@RequestBody LineanegocioEntity Lineanegocio) {
-        return new ResponseEntity<>(service.create(Lineanegocio), HttpStatus.OK);
+    public ResponseEntity<LineanegocioEntity> create(@RequestBody LineanegocioEntity lineanegocio
+            , @RequestHeader("Authorization") int usuarioId)
+    {
+        lineanegocio.setUsuarioid(usuarioId);
+        return new ResponseEntity<>(service.create(lineanegocio), HttpStatus.OK);
     }
 
     @GetMapping("/findById")
@@ -36,8 +32,12 @@ public class LineanegocioController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<LineanegocioEntity> update(@RequestBody LineanegocioEntity Lineanegocio) throws ResourceNotFoundException {
-        return new ResponseEntity<>(service.update(Lineanegocio), HttpStatus.OK);
+    public ResponseEntity<LineanegocioEntity> update(@RequestBody LineanegocioEntity lineanegocio
+            , @RequestHeader("Authorization") int usuarioId
+        ) throws ResourceNotFoundException
+    {
+        lineanegocio.setUsuarioid(usuarioId);
+        return new ResponseEntity<>(service.update(lineanegocio), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete")
@@ -47,7 +47,7 @@ public class LineanegocioController {
     }
 
     @DeleteMapping("/deleteById")
-    public ResponseEntity<Object> delete(@RequestParam int id) throws ResourceNotFoundException {
+    public ResponseEntity<Object> delete(@RequestParam(name = "id") int id) throws ResourceNotFoundException {
         service.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -60,8 +60,10 @@ public class LineanegocioController {
     @GetMapping("/search")
     public ResponseEntity<ResultSearchData<LineanegocioEntity>> search(@RequestParam(name = "page", defaultValue = "0") int page,
         @RequestParam(name = "size", defaultValue = "10") int size, @RequestParam(name = "sortBy") String sortBy
-            , @RequestParam(name = "sortOrder") String sortOrder ) {
-        ResultSearchData<LineanegocioEntity> datos = service.findAllSearch(page, size,sortBy, sortOrder);
+            , @RequestParam(name = "sortOrder") String sortOrder
+            , @RequestHeader("Authorization") int usuarioId
+    ) {
+        ResultSearchData<LineanegocioEntity> datos = service.findAllSearch(page, size,sortBy, sortOrder, usuarioId);
         return new ResponseEntity<ResultSearchData<LineanegocioEntity>>(datos, new HttpHeaders(), HttpStatus.OK);
     }
 }

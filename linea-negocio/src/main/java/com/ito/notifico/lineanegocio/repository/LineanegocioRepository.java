@@ -7,5 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface LineanegocioRepository  extends CrudRepository<LineanegocioEntity,Integer> {
     Page<LineanegocioEntity> findAll(Pageable paging);
+    Page<LineanegocioEntity> findAllByUsuarioid(Pageable paging, int usuarioId);
     LineanegocioEntity findByNombre(String nombre);
 }
