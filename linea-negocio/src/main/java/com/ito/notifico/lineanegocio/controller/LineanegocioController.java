@@ -4,8 +4,6 @@ import com.ito.notifico.lineanegocio.model.LineanegocioEntity;
 import com.ito.notifico.lineanegocio.service.ILineanegocioService;
 import com.ito.notifico.lineanegocio.shared.ResultSearchData;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -65,6 +63,5 @@ public class LineanegocioController {
             , @RequestParam(name = "sortOrder") String sortOrder ) {
         ResultSearchData<LineanegocioEntity> datos = service.findAllSearch(page, size,sortBy, sortOrder);
         return new ResponseEntity<ResultSearchData<LineanegocioEntity>>(datos, new HttpHeaders(), HttpStatus.OK);
-
     }
 }
