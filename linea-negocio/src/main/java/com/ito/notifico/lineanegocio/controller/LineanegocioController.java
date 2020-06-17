@@ -4,11 +4,15 @@ import com.ito.notifico.lineanegocio.model.LineanegocioEntity;
 import com.ito.notifico.lineanegocio.service.ILineanegocioService;
 import com.ito.notifico.lineanegocio.shared.ResultSearchData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping({ "/lineanegocio-api" })
@@ -57,9 +61,9 @@ public class LineanegocioController {
 
     @GetMapping("/search")
     public ResponseEntity<ResultSearchData<LineanegocioEntity>> search(@RequestParam(name = "page", defaultValue = "0") int page,
-                                                            @RequestParam(name = "size", defaultValue = "10") int size) {
-        //PageRequest pageRequest = PageRequest.of(page, size);
-        ResultSearchData<LineanegocioEntity> datos = service.findAllSearch(page, size);
+        @RequestParam(name = "size", defaultValue = "10") int size, @RequestParam(name = "sortBy") String sortBy
+            , @RequestParam(name = "sortOrder") String sortOrder ) {
+        ResultSearchData<LineanegocioEntity> datos = service.findAllSearch(page, size,sortBy, sortOrder);
         return new ResponseEntity<ResultSearchData<LineanegocioEntity>>(datos, new HttpHeaders(), HttpStatus.OK);
 
     }
