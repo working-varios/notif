@@ -3,16 +3,16 @@ package com.ito.notifico.lineanegocio.model;
 
 import java.math.BigInteger;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.ResultCheckStyle;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
@@ -21,7 +21,7 @@ import lombok.Builder;
 @Getter
 @Setter
 @Entity
-@Table(name = "lineanegocio")
+@Table(name = "lineanegocio", uniqueConstraints = @UniqueConstraint(name = "lineanegocio_uk", columnNames = "nombre"))
 @SQLDelete(sql = "UPDATE lineanegocio SET eliminado = current_date WHERE id = ?", check = ResultCheckStyle.COUNT)
 @Where(clause = "eliminado is  null")
 public class LineanegocioEntity {
@@ -57,5 +57,17 @@ public class LineanegocioEntity {
     /** The eliminado. */
     @Column(name = "eliminado")
     private Date eliminado;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Cascade({ CascadeType.REFRESH })
+    @JoinTable(name = "linea_negocio_modalidad",
+            joinColumns = @JoinColumn(name = "linea_negocio_id", columnDefinition = "int4"),
+            inverseJoinColumns = @JoinColumn(name = "modalidad_id", columnDefinition = "int4"),
+            uniqueConstraints = {@UniqueConstraint(columnNames={"linea_negocio_id","modalidad_id"})})
+    @Builder.Default
+    @JsonManagedReference
+    private Set<ModalidadEntity> lineasNegocio = new HashSet<>();
+
+
 
 }

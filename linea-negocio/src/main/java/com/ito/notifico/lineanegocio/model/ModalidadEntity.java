@@ -3,14 +3,9 @@ package com.ito.notifico.lineanegocio.model;
 import java.math.BigInteger;
         import java.util.Date;
 
-        import javax.persistence.Column;
-        import javax.persistence.Entity;
-        import javax.persistence.GeneratedValue;
-        import javax.persistence.GenerationType;
-        import javax.persistence.Id;
-        import javax.persistence.Table;
+import javax.persistence.*;
 
-        import lombok.Getter;
+import lombok.Getter;
         import lombok.Setter;
         import org.hibernate.annotations.ResultCheckStyle;
         import org.hibernate.annotations.SQLDelete;
@@ -20,7 +15,7 @@ import java.math.BigInteger;
 @Getter
 @Setter
 @Entity
-@Table(name = "modalidad")
+@Table(name = "modalidad", uniqueConstraints = @UniqueConstraint(name = "modalidad_uk", columnNames = "nombre"))
 @SQLDelete(sql = "UPDATE modalidad SET eliminado = current_date WHERE id = ?", check = ResultCheckStyle.COUNT)
 @Where(clause = "eliminado is  null")
 public class ModalidadEntity {
