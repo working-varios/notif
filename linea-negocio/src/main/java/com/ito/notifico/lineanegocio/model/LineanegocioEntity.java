@@ -65,8 +65,6 @@ public class LineanegocioEntity {
             inverseJoinColumns = @JoinColumn(name = "modalidad_id", columnDefinition = "int4"),
             uniqueConstraints = {@UniqueConstraint(columnNames={"linea_negocio_id","modalidad_id"})})
     @Builder.Default
-    @JsonManagedReference
-    private Set<ModalidadEntity> lineasNegocio = new HashSet<>();
-
+    private Set<ModalidadEntity> modalidades = new HashSet<>();
 
 }
