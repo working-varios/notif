@@ -67,4 +67,13 @@ public class LineanegocioEntity {
     @Builder.Default
     private Set<ModalidadEntity> modalidades = new HashSet<>();
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Cascade({ CascadeType.REFRESH })
+    @JoinTable(name = "linea_negocio_ubicacion",
+            joinColumns = @JoinColumn(name = "linea_negocio_id", columnDefinition = "int4"),
+            inverseJoinColumns = @JoinColumn(name = "ubicacion_id", columnDefinition = "int4"),
+            uniqueConstraints = {@UniqueConstraint(columnNames={"linea_negocio_id","ubicacion_id"})})
+    @Builder.Default
+    private Set<UbicacionEntity> ubicaciones = new HashSet<>();
+
 }
