@@ -69,5 +69,4 @@ public class LineanegocioEntity {
     private Set<ModalidadEntity> lineasNegocio = new HashSet<>();
 
 
-
 }

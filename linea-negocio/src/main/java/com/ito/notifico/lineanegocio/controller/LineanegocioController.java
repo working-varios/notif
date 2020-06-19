@@ -11,16 +11,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping({ "/api-lineanegocio" })
+@RequestMapping({ "/lineanegocio-api" })
 @CrossOrigin(origins= {"*"})
-@Api(value = "Users microservice", description = "This API has a CRUD for users")
 public class LineanegocioController {
 
     @Autowired
     private ILineanegocioService service;
 
-    @RequestMapping(method = RequestMethod.POST, path = "/create")
-//    @PostMapping("/create")
+  //  @RequestMapping(method = RequestMethod.POST, path = "/create")
+    @PostMapping("/create")
     public ResponseEntity<LineanegocioEntity> create(@RequestBody LineanegocioEntity lineanegocio
             , @RequestHeader("Authorization") int usuarioId)
     {
@@ -33,8 +32,8 @@ public class LineanegocioController {
         return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
 
-//    @PutMapping("/update")
-    @RequestMapping(method = RequestMethod.PUT)
+    @PutMapping("/update")
+//    @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<LineanegocioEntity> update(@RequestBody LineanegocioEntity lineanegocio
             , @RequestHeader("Authorization") int usuarioId
         ) throws ResourceNotFoundException
@@ -49,21 +48,21 @@ public class LineanegocioController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, path = "/deleteById")
-//    @DeleteMapping("/deleteById")
+//    @RequestMapping(method = RequestMethod.DELETE, path = "/deleteById")
+    @DeleteMapping("/deleteById")
     public ResponseEntity<Object> delete(@RequestParam(name = "id") int id) throws ResourceNotFoundException {
         service.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-//    @GetMapping("/findAll")
-    @RequestMapping(method = RequestMethod.GET, path = "/findAll")
+    @GetMapping("/findAll")
+//    @RequestMapping(method = RequestMethod.GET, path = "/findAll")
     public ResponseEntity<Iterable<LineanegocioEntity>> findAll() {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
-//    @GetMapping("/search")
-    @RequestMapping(method = RequestMethod.GET, path = "/search")
+    @GetMapping("/search")
+    //@RequestMapping(method = RequestMethod.GET, path = "/search")
     public ResponseEntity<ResultSearchData<LineanegocioEntity>> search(@RequestParam(name = "page", defaultValue = "0") int page,
         @RequestParam(name = "size", defaultValue = "10") int size, @RequestParam(name = "sortBy") String sortBy
             , @RequestParam(name = "sortOrder") String sortOrder
