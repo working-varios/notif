@@ -1,7 +1,7 @@
 package com.ito.notifico.lineanegocio.controller;
 
 import com.ito.notifico.lineanegocio.exception.ResourceNotFoundException;
-import com.ito.notifico.lineanegocio.model.UbicacionEntity;
+import com.ito.notifico.lineanegocio.model.MunicipioEntity;
 import com.ito.notifico.lineanegocio.service.IGenericNoPageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,27 +10,27 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping({ "/ubicacion-api" })
+@RequestMapping({ "/municipio-api" })
 @CrossOrigin(origins= {"*"})
-public class UbicacionController {
+public class MunicipioController {
 
     @Autowired
-    private IGenericNoPageService<UbicacionEntity> service;
+    private IGenericNoPageService<MunicipioEntity> service;
 
     @PostMapping("/create")
-    public ResponseEntity<UbicacionEntity> create(@RequestBody UbicacionEntity modalidad
+    public ResponseEntity<MunicipioEntity> create(@RequestBody MunicipioEntity modalidad
             , @RequestHeader("Authorization") int usuarioId)
     {
         return new ResponseEntity<>(service.create(modalidad), HttpStatus.OK);
     }
 
     @GetMapping("/findById")
-    public ResponseEntity<UbicacionEntity> findOne(@RequestParam int id) throws ResourceNotFoundException {
+    public ResponseEntity<MunicipioEntity> findOne(@RequestParam int id) throws ResourceNotFoundException {
         return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<UbicacionEntity> update(@RequestBody UbicacionEntity modalidad
+    public ResponseEntity<MunicipioEntity> update(@RequestBody MunicipioEntity modalidad
             , @RequestHeader("Authorization") int usuarioId
     ) throws ResourceNotFoundException
     {
@@ -38,7 +38,7 @@ public class UbicacionController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<Object> delete(@RequestBody UbicacionEntity Ubicacion) throws ResourceNotFoundException {
+    public ResponseEntity<Object> delete(@RequestBody MunicipioEntity Ubicacion) throws ResourceNotFoundException {
         service.delete(Ubicacion);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -50,7 +50,7 @@ public class UbicacionController {
     }
 
     @GetMapping("/findAll")
-    public ResponseEntity<Iterable<UbicacionEntity>> findAll() {
+    public ResponseEntity<Iterable<MunicipioEntity>> findAll() {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 }

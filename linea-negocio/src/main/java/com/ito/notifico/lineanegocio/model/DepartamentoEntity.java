@@ -23,10 +23,13 @@ public class DepartamentoEntity {
     @Column(name = "ID")
     private int id;
 
-    @Column(columnDefinition = "VARCHAR(20) NOT NULL")
+    @Column(columnDefinition = "VARCHAR(2) NOT NULL")
     private String codigo;
 
-    @Column(columnDefinition = "VARCHAR(120) NOT NULL")
+    @Column(columnDefinition = "VARCHAR(8) NOT NULL")
+    private String sigla;
+
+    @Column(columnDefinition = "VARCHAR(160) NOT NULL")
     private String nombre;
 
     /** The activo. */

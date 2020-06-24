@@ -13,17 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping({ "/departamento-api" })
+@RequestMapping({ "/municipio-api" })
 @CrossOrigin(origins = "*")
 public class DepartamentoController {
 
     @Autowired
     private IGenericBasicService<DepartamentoEntity> service;
-
-    @GetMapping(value = "/health")
-    public ResponseEntity<String> health() {
-        return new ResponseEntity<>("OK", HttpStatus.OK);
-    }
 
     @GetMapping("/findById")
     public ResponseEntity<DepartamentoEntity> findOne(@RequestParam int id) throws ResourceNotFoundException {

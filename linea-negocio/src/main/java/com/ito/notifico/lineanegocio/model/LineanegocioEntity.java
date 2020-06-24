@@ -8,7 +8,6 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cascade;
@@ -69,11 +68,11 @@ public class LineanegocioEntity {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @Cascade({ CascadeType.REFRESH })
-    @JoinTable(name = "linea_negocio_ubicacion",
+    @JoinTable(name = "linea_negocio_municipio",
             joinColumns = @JoinColumn(name = "linea_negocio_id", columnDefinition = "int4"),
-            inverseJoinColumns = @JoinColumn(name = "ubicacion_id", columnDefinition = "int4"),
-            uniqueConstraints = {@UniqueConstraint(columnNames={"linea_negocio_id","ubicacion_id"})})
+            inverseJoinColumns = @JoinColumn(name = "municipio_id", columnDefinition = "int4"),
+            uniqueConstraints = {@UniqueConstraint(columnNames={"linea_negocio_id","municipio_id"})})
     @Builder.Default
-    private Set<UbicacionEntity> ubicaciones = new HashSet<>();
+    private Set<MunicipioEntity> municipios = new HashSet<>();
 
 }

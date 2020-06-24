@@ -16,10 +16,10 @@ import lombok.Builder;
 @Getter
 @Setter
 @Entity
-@Table(name = "ubicacion", uniqueConstraints = @UniqueConstraint(name = "ubicacion_uk", columnNames = "nombre"))
-@SQLDelete(sql = "UPDATE ubicacion SET eliminado = SYSDATE WHERE id = ?", check = ResultCheckStyle.COUNT)
+@Table(name = "municipio", uniqueConstraints = @UniqueConstraint(name = "municipio_uk", columnNames = {"nombre","departamento_id"}))
+@SQLDelete(sql = "UPDATE municipio SET eliminado = SYSDATE WHERE id = ?", check = ResultCheckStyle.COUNT)
 @Where(clause = "eliminado is  null")
-public class UbicacionEntity {
+public class MunicipioEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
