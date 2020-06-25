@@ -1,14 +1,18 @@
 package com.ito.notifico.lineanegocio.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.ResultCheckStyle;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -31,6 +35,12 @@ public class DepartamentoEntity {
 
     @Column(columnDefinition = "VARCHAR(160) NOT NULL")
     private String nombre;
+
+    @OneToMany(mappedBy = "departamento")
+    @Cascade({ org.hibernate.annotations.CascadeType.ALL })
+    @Builder.Default
+    @JsonManagedReference
+    private Set<MunicipioEntity> municipios = new HashSet<>();
 
     /** The activo. */
     @Column(name = "activo", columnDefinition = "BOOLEAN NOT NULL DEFAULT TRUE")

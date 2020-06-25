@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.*;
@@ -36,6 +37,7 @@ public class MunicipioEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     @Cascade({ org.hibernate.annotations.CascadeType.REFRESH })
     @JoinColumn(name = "departamento_id", columnDefinition = "int4 NOT NULL")
+    @JsonBackReference
     private DepartamentoEntity departamento;
 
     /**
