@@ -14,7 +14,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "familia", uniqueConstraints = @UniqueConstraint(name = "familia_uk", columnNames = {"codigo","segmento_id"}))
+@Table(name = "familia", uniqueConstraints = @UniqueConstraint(name = "familia_uk", columnNames = {"nombre","segmento_id"}))
 @SQLDelete(sql = "UPDATE familia SET eliminado = SYSDATE WHERE id = ?", check = ResultCheckStyle.COUNT)
 @Where(clause = "eliminado is  null")
 public class FamiliaEntity {
