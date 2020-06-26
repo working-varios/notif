@@ -7,10 +7,10 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.*;
 
-import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,10 +18,10 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "segmento", uniqueConstraints = @UniqueConstraint(name = "segmento_uk", columnNames = {"nombre","grupo_id"}))
-@SQLDelete(sql = "UPDATE segmento SET eliminado = SYSDATE WHERE id = ?", check = ResultCheckStyle.COUNT)
+@Table(name = "clase", uniqueConstraints = @UniqueConstraint(name = "clase_uk", columnNames = {"nombre", "codigo","familia_id"}))
+@SQLDelete(sql = "UPDATE clase SET eliminado = SYSDATE WHERE id = ?", check = ResultCheckStyle.COUNT)
 @Where(clause = "eliminado is  null")
-public class SegmentoEntity {
+public class ClaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,19 +34,19 @@ public class SegmentoEntity {
     @Column(columnDefinition = "VARCHAR(200) NOT NULL")
     private String nombre;
 
-    @OneToMany(mappedBy = "segmento")
+    @OneToMany(mappedBy = "clase")
     @Cascade({ org.hibernate.annotations.CascadeType.ALL })
     @Builder.Default
     @JsonManagedReference
     @OrderBy("nombre")
-    private Set<FamiliaEntity> familias = new HashSet<>();
+    private Set<ProductoEntity> clases = new HashSet<>();
 
     @NotFound(action= NotFoundAction.IGNORE)
     @ManyToOne(fetch = FetchType.EAGER)
     @Cascade({ org.hibernate.annotations.CascadeType.REFRESH })
-    @JoinColumn(name = "grupo_id", columnDefinition = "int4 NOT NULL")
+    @JoinColumn(name = "familia_id", columnDefinition = "int4 NOT NULL")
     @JsonBackReference
-    private GrupoEntity grupo;
+    private FamiliaEntity familia;
 
     /** The activo. */
     @Column(name = "activo", columnDefinition = "BOOLEAN NOT NULL DEFAULT TRUE")

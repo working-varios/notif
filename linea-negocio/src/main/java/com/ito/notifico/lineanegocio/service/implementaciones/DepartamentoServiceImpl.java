@@ -31,6 +31,11 @@ public class DepartamentoServiceImpl implements IGenericBasicService<Departament
     }
 
     @Override
+    public DepartamentoEntity findByCodigo(String codigo) throws ResourceNotFoundException {
+        return null;
+    }
+
+    @Override
     public DepartamentoEntity findById(int id) throws ResourceNotFoundException {
         if (repository.findById(id).isPresent()) {
             return repository.findById(id).get();

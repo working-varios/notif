@@ -34,7 +34,7 @@ public class GrupoEntity {
     @Column(columnDefinition = "VARCHAR(20) NOT NULL")
     private String codigo;
 
-    @Column(columnDefinition = "VARCHAR(120) NOT NULL")
+    @Column(columnDefinition = "VARCHAR(200) NOT NULL")
     private String nombre;
 
     @OneToMany(mappedBy = "grupo")

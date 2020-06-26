@@ -8,6 +8,8 @@ public interface IGenericBasicService<T> {
 
         Iterable<T> findAll();
 
+        T findByCodigo(String codigo) throws ResourceNotFoundException;
+
         T findById(int id) throws ResourceNotFoundException;
 
         }
