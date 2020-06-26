@@ -1,6 +1,7 @@
 package com.ito.notifico.lineanegocio.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,8 +9,11 @@ import org.hibernate.annotations.*;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -29,6 +33,13 @@ public class SegmentoEntity {
 
     @Column(columnDefinition = "VARCHAR(120) NOT NULL")
     private String nombre;
+
+    @OneToMany(mappedBy = "segmento")
+    @Cascade({ org.hibernate.annotations.CascadeType.ALL })
+    @Builder.Default
+    @JsonManagedReference
+    @OrderBy("nombre")
+    private Set<FamiliaEntity> familias = new HashSet<>();
 
     @NotFound(action= NotFoundAction.IGNORE)
     @ManyToOne(fetch = FetchType.EAGER)
