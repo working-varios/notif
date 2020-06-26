@@ -1,15 +1,19 @@
 package com.ito.notifico.lineanegocio.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.*;
 
 import javax.persistence.Entity;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -27,8 +31,15 @@ public class FamiliaEntity {
     @Column(columnDefinition = "VARCHAR(20) NOT NULL")
     private String codigo;
 
-    @Column(columnDefinition = "VARCHAR(120) NOT NULL")
+    @Column(columnDefinition = "VARCHAR(200) NOT NULL")
     private String nombre;
+
+    @OneToMany(mappedBy = "familia")
+    @Cascade({ org.hibernate.annotations.CascadeType.ALL })
+    @Builder.Default
+    @JsonManagedReference
+    @OrderBy("nombre")
+    private Set<ClaseEntity> clases = new HashSet<>();
 
     @NotFound(action= NotFoundAction.IGNORE)
     @ManyToOne(fetch = FetchType.EAGER)
