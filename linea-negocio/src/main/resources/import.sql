@@ -190,7 +190,7 @@ insert into municipio(id,departamento_id, codigo, nombre) values (145,5,'08758',
 insert into municipio(id,departamento_id, codigo, nombre) values (146,5,'08770','SUAN');
 insert into municipio(id,departamento_id, codigo, nombre) values (147,5,'08832','TUBARÁ');
 insert into municipio(id,departamento_id, codigo, nombre) values (148,5,'08849','USIACURÍ');
-insert into municipio(id,departamento_id, codigo, nombre) values (149,7,'11001','BOGOTÁ, D.C.');
+insert into municipio(id,departamento_id, codigo, nombre) values (149,6,'11001','BOGOTÁ, D.C.');
 insert into municipio(id,departamento_id, codigo, nombre) values (150,7,'13001','CARTAGENA DE INDIAS');
 insert into municipio(id,departamento_id, codigo, nombre) values (151,7,'13006','ACHÍ');
 insert into municipio(id,departamento_id, codigo, nombre) values (152,7,'13030','ALTOS DEL ROSARIO');

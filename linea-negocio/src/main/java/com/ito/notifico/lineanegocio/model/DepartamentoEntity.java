@@ -40,6 +40,7 @@ public class DepartamentoEntity {
     @Cascade({ org.hibernate.annotations.CascadeType.ALL })
     @Builder.Default
     @JsonManagedReference
+    @OrderBy("nombre")
     private Set<MunicipioEntity> municipios = new HashSet<>();
 
     /** The activo. */
