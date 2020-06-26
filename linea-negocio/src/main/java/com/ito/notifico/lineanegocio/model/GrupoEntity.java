@@ -1,11 +1,15 @@
 package com.ito.notifico.lineanegocio.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.ResultCheckStyle;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
@@ -32,6 +36,13 @@ public class GrupoEntity {
 
     @Column(columnDefinition = "VARCHAR(120) NOT NULL")
     private String nombre;
+
+    @OneToMany(mappedBy = "grupo")
+    @Cascade({ org.hibernate.annotations.CascadeType.ALL })
+    @Builder.Default
+    @JsonManagedReference
+    @OrderBy("nombre")
+    private Set<SegmentoEntity> segmentos = new HashSet<>();
 
     /** The activo. */
     @Column(name = "activo", columnDefinition = "BOOLEAN NOT NULL DEFAULT TRUE")
