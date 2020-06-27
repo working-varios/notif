@@ -39,7 +39,7 @@ public class ClaseEntity {
     @Builder.Default
     @JsonManagedReference
     @OrderBy("nombre")
-    private Set<ProductoEntity> clases = new HashSet<>();
+    private Set<ProductoEntity> productos = new HashSet<>();
 
     @NotFound(action= NotFoundAction.IGNORE)
     @ManyToOne(fetch = FetchType.EAGER)
